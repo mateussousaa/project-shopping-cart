@@ -63,6 +63,14 @@ const putProductItemElementOnScreen = async () => {
   });
 };
 
+const loadCartWithSavedItems = () => {
+  const cart = document.querySelector('.cart__items');
+  cart.innerHTML = getSavedCartItems();
+  const children = [...cart.children];
+  children.forEach((item) => item.addEventListener('click', cartItemClickListener));
+};
+
 window.onload = () => {
+  loadCartWithSavedItems();
   putProductItemElementOnScreen();
 };
