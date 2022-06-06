@@ -20,6 +20,10 @@ describe('2 - Teste a função fetchItem', () => {
     expect(response).toEqual(item);
   });
   it('Should test if fetchItem is called with no parameter returns the expected error', async ()=> {
-    expect(fetchItem()).toEqual(new Error('You must provide an url'));
+    try {
+      await fetchItem();
+    } catch (error) {
+      expect(error).toEqual(new Error('You must provide an url'));
+    }
   });
 });
