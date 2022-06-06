@@ -27,8 +27,9 @@ const createProductItemElement = ({ sku, name, image }) => {
 // const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
-  const parent = event.target.parentElement;
-  parent.removeChild(event.target);
+  const cart = event.target.parentElement;
+  cart.removeChild(event.target);
+  saveCartItems(cart.innerHTML);
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -46,6 +47,7 @@ const putItemInCart = async (productId) => {
   const cartItem = createCartItemElement({ sku: id, name: title, salePrice: price });
   cartItem.addEventListener('click', cartItemClickListener);
   cart.appendChild(cartItem);
+  saveCartItems(cart.innerHTML);
 };
 
 const putProductItemElementOnScreen = async () => {
