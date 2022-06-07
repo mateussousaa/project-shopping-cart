@@ -144,8 +144,8 @@ body {
 
 .cart .cart__item {
   padding: 10px;
-  margin: 5px ;
-  background-color: #1A34DB;
+  margin: 5px;
+  background-color: rgb(26, 52, 219);
   color: white;
   border-radius: 5px;
 }
