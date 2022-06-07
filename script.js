@@ -17,16 +17,12 @@ const createCustomElement = (element, className, innerText) => {
 const createProductItemElement = ({ sku, name, image }) => {
   const section = document.createElement('section');
   section.className = 'item';
-
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-
   return section;
 };
-
-// const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const calculateTotal = () => {
   const children = [...cart.children];
@@ -69,6 +65,19 @@ const putItemInCart = async (productId) => {
   refreshTotalPrice();
 };
 
+const createLoading = () => {
+  const p = document.createElement('p');
+  const itemsSection = document.querySelector('.items');
+  p.innerText = 'carregando...';
+  p.className = 'loading';
+  itemsSection.appendChild(p);
+};
+
+const removeLoading = () => {
+  const loading = document.querySelector('.loading');
+  loading.parentElement.removeChild(loading);
+};
+
 const putProductItemElementOnScreen = async () => {
   const itemsSection = document.querySelector('.items');
   const response = await fetchProducts('computador');
@@ -80,6 +89,7 @@ const putProductItemElementOnScreen = async () => {
     // productItem.lastChild is the item's button
     productItem.lastChild.addEventListener('click', () => { putItemInCart(id); });
   });
+  removeLoading();
 };
 
 const loadCartWithSavedItems = () => {
@@ -106,6 +116,7 @@ const emptyCar = () => {
 };
 
 window.onload = () => {
+  createLoading();
   loadCartWithSavedItems();
   putProductItemElementOnScreen();
   createTotalPrice();
