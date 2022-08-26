@@ -153,7 +153,7 @@ body {
 .empty-cart {
   width: 170px;
   height: 35px;
-  margin: 0 auto;
+  margin: 20px auto;
   border: 2px solid rgb(5, 52, 219);
   background-color: rgb(249, 249, 246);
 }

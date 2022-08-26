@@ -38,7 +38,7 @@ const calculateTotal = () => {
 
 const refreshTotalPrice = () => {
   const totalPrice = document.querySelector('.total-price');
-  totalPrice.innerText = `${calculateTotal()}`; 
+  totalPrice.innerText = `Preço: ${calculateTotal()}`; 
 };
 
 const cartItemClickListener = (event) => {
