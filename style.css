@@ -27,6 +27,7 @@ body {
 }
 
 .container-title {
+  padding: 10px;
   width: 75%;
 }
 
@@ -176,7 +177,7 @@ body {
 }
 
 .empty-cart {
-  width: 80%;
+  width: 250px;
   height: 30px;
   margin: 20px auto;
   border: 0;
@@ -206,5 +207,36 @@ body {
   .cart__item {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .container-title, .container-cartTitle {
+    width: 100%;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .items {
+    width: 100%;
+  }
+  
+  .cart {
+    height: auto;
+    width: 100%;
+    order: -1;
+    flex-flow: column nowrap;
+  }
+
+  .cart .cart__items {
+    height: auto;
+    overflow-y: auto;
   }
 }
