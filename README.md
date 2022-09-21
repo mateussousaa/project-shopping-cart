@@ -1,16 +1,21 @@
-# 🚧 README em construção 🚧
+# Shopping Cart
 
-<!-- Olá, Tryber!
+### PT - BR
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+Nesse projeto, eu fui capaz de:
 
-É essencial que você preencha esse documento por conta própria, ok?
+- Fazer requisições a uma API (Application Programming Interface) do Mercado Livre;
+- Utilizar meus conhecimentos sobre JavaScript, CSS e HTML;
+- Trabalhar com funções assíncronas;
+- Implementar testes unitários.
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+### EN
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+In this project, I was able to:
 
--->
+- Make requests to an API (Application Programming Interface) from Mercado Livre;
+- Use my knowledge of JavaScript, CSS and HTML;
+- Work with asynchronous functions;
+- Implement unit tests.
+
+#### Project Link: https://project-shopping-cart-abc2zydvh-mateussousaa.vercel.app/
