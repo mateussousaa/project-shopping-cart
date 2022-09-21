@@ -14,13 +14,18 @@ const createCustomElement = (element, className, innerText) => {
   return e;
 };
 
-const createProductItemElement = ({ sku, name, image }) => {
+const createProductItemElement = ({ sku, name, image, price }) => {
   const section = document.createElement('section');
+  const itemPrice = document.createElement('div');
+  itemPrice.className = 'item__itemPrice';
   section.className = 'item';
   section.appendChild(createCustomElement('span', 'item__sku', sku));
-  section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
-  section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
+  section.appendChild(createCustomElement('span', 'item__title', name));
+  itemPrice.appendChild(createCustomElement('span', 'item__currency', 'R$'));
+  itemPrice.appendChild(createCustomElement('span', 'item__price', `${price.toFixed(2)}`));
+  section.appendChild(itemPrice);
+  section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho'));
   return section;
 };
 
@@ -38,7 +43,7 @@ const calculateTotal = () => {
 
 const refreshTotalPrice = () => {
   const totalPrice = document.querySelector('.total-price');
-  totalPrice.innerText = `Preço: ${calculateTotal()}`; 
+  totalPrice.innerText = `Subtotal: R$ ${calculateTotal().toFixed(2)}`; 
 };
 
 const cartItemClickListener = (event) => {
@@ -47,18 +52,19 @@ const cartItemClickListener = (event) => {
   refreshTotalPrice();
 };
 
-const createCartItemElement = ({ sku, name, salePrice }) => {
+const createCartItemElement = ({ sku, name, salePrice, thumbnail }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice.toFixed(2)}`;
+  li.appendChild(createProductImageElement(thumbnail));
   li.addEventListener('click', cartItemClickListener);
   return li;
 };
 
 const putItemInCart = async (productId) => {
   const response = await fetchItem(productId);
-  const { id, title, price } = response;
-  const cartItem = createCartItemElement({ sku: id, name: title, salePrice: price });
+  const { id, title, price, thumbnail } = response;
+  const cartItem = createCartItemElement({ sku: id, name: title, salePrice: price, thumbnail });
   cartItem.addEventListener('click', cartItemClickListener);
   cart.appendChild(cartItem);
   saveCartItems(cart.innerHTML);
@@ -83,8 +89,8 @@ const putProductItemElementOnScreen = async () => {
   const response = await fetchProducts('computador');
   const { results: data } = response;
   data.forEach((item) => {
-    const { id, title, thumbnail } = item;
-    const productItem = createProductItemElement({ sku: id, name: title, image: thumbnail });
+    const { id, title, thumbnail, price } = item;
+    const productItem = createProductItemElement({ sku: id, name: title, image: thumbnail, price });
     itemsSection.appendChild(productItem);
     // productItem.lastChild is the item's button
     productItem.lastChild.addEventListener('click', () => { putItemInCart(id); });
@@ -102,7 +108,9 @@ const createTotalPrice = () => {
   const cartSection = document.querySelector('.cart');
   const totalPrice = document.createElement('p');
   totalPrice.className = 'total-price';
-  cartSection.appendChild(totalPrice);
+  const div = cartSection.children[1];
+  div.className = 'price_section';
+  div.insertBefore(totalPrice, div.children[0]);
   refreshTotalPrice();
 };
 

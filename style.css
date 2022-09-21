@@ -1,3 +1,11 @@
+:root {
+  --color01: #41197F;
+  --color02: #00D5E2;
+  --color03: #444955;
+  --color04: #F3F9FB;
+  --color05: #A8A9AB;
+}
+
 * {
   box-sizing: border-box;
   font-family: Epilogue, sans-serif;
@@ -6,70 +14,45 @@
 }
 
 body {
-  background-color: rgb(246, 246, 246);
+  background-color: #FFFFFF;
 }
 
 .header {
   position: relative;
-  background-color: rgb(3, 52, 45);
+  background-color: var(--color01);
   display: flex;
   align-items: center;
   width: 100%;
-  height: 60px;
+  height: 90px;
 }
 
 .container-title {
-  width: 80%;
+  width: 75%;
 }
 
 .title {
-  color: rgb(221, 221, 221);
-  font-size: 30px;
   padding-left: 30px;
 }
 
 .container-cartTitle {
+  padding: 20px;
   position: relative;
   display: flex;
   align-items: center;
-  background-color: rgb(10, 118, 79);
-  width: 40%;
+  background-color: var(--color02);
+  width: 25%;
   height: 100%;
-  margin-left: 30px;
+  justify-content: center;
 }
 
 .container-cartTitle span {
   z-index: 1;
 }
 
-.container-cartTitle:after {
-  content: '';
-  position: absolute;
-  top: 15px;
-  right: 61.5%;
-  width: 39.5%;
-  height: 15px;
-  background: rgb(10, 118, 79);
-  transform: skew(-45deg);
-  z-index: 0;
-}
-
-.container-cartTitle:before {
-  content: '';
-  position: absolute;
-  top: 30px;
-  right: 61.5%;
-  width: 39.5%;
-  height: 15px;
-  background: rgb(10, 118, 79);
-  transform: skew(45deg);
-  z-index: 0;
-}
-
 .container-cartTitle .cart__title {
-  color: white;
+  color: var(--color01);
   font-size: 20px;
-  padding-left: 35px;
+  padding-left: 25px;
   font-weight: 700;
 }
 
@@ -84,8 +67,10 @@ body {
 }
 
 .items {
+  background-color: #FFFFFF;
   display: flex;
-  flex-basis: 70%;
+  gap: 20px;
+  width: 75%;
   flex-wrap: wrap;
   justify-content: center;
   margin: 40px 0;
@@ -94,10 +79,11 @@ body {
 .item {
   display: flex;
   flex-direction: column;
+  padding: 10px;
   height: auto;
   margin: 5px;
-  width: 200px;
-  border: 2px solid rgb(234, 234, 233);
+  width: 272px;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   box-sizing: border-box;
 }
@@ -109,30 +95,55 @@ body {
 .item .item__title {
   display: flex;
   align-items: center;
-  flex-grow: 1;
+  margin: auto;
+  width: 234px;
   padding: 10px;
-  text-align: center;
+  color: var(--color03);
 }
 
 .item .item__image {
-  width: 100%;
+  width: 65%;
+  padding: 15px;
+  margin: auto;
+}
+
+.item__itemPrice {
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.item .item__currency {
+  color: var(--color05);
+  display: inline;
+}
+
+.item .item__price {
+  display: inline;
+  font-size: 27.5px;
+  font-weight: 700;
 }
 
 .item .item__add {
-  background-color: rgb(5, 52, 219);
+  background-color: var(--color02);
   border: 0;
   cursor: pointer;
-  margin: 0;
+  margin: 0 auto;
+  border-radius: 5px;
   padding: 10px;
   color: white;
+  width: 250px;
+  font-weight: 700;
 }
 
 .cart {
   display: flex;
-  flex-basis: 32%;
+  width: 25%;
+  height: 91vh;
   flex-flow: column wrap;
-  background-color: rgb(241, 241, 238);
-  height: 100vh;
+  background-color: var(--color04);
+  justify-content: space-between;
 }
 
 .cart .cart__items {
@@ -143,24 +154,44 @@ body {
 }
 
 .cart .cart__item {
-  padding: 10px;
+  padding: 5px;
   margin: 5px;
-  background-color: rgb(26, 52, 219);
-  color: white;
+  color: var(--color03);
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart .cart__item img {
+  order: -1;
+  border-radius: 50%;
+  border: 10px white solid;
+}
+
+.price_section {
+  padding: 10px;
+  text-align: center;
 }
 
 .empty-cart {
-  width: 170px;
-  height: 35px;
+  width: 80%;
+  height: 30px;
   margin: 20px auto;
-  border: 2px solid rgb(5, 52, 219);
-  background-color: rgb(249, 249, 246);
+  border: 0;
+  border-radius: 5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  background-color: var(--color01);
 }
 
 .total-price {
-  padding: 30px;
+  padding: 25px;
   align-self: center;
+  color: var(--color03);
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .loading {
@@ -169,4 +200,11 @@ body {
   background-color: rgb(230, 230, 230);
   border-radius: 4px;
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.336);
+}
+
+@media screen and (max-width: 1400px) {
+  .cart__item {
+    flex-direction: column;
+    text-align: center;
+  }
 }
