@@ -1,5 +1,7 @@
 # Shopping Cart
 
+![Screenshot da tela inicial](shopping_cart.gif)
+
 ### PT - BR
 
 Nesse projeto, eu fui capaz de:
